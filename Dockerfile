@@ -13,6 +13,7 @@ RUN apt-get install -y openssh-server && \
 
 RUN apt-get install -y \
         build-essential \
+        libsqlite3-dev \
         vim \
         tmux \
         ;
