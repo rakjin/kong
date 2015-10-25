@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+CID=$(docker run -d -p 127.0.0.1::22 rakjin/kong)
+docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/authorized_keys
+SSH_PORT=$(docker port "$CID" 22 | cut -d ":" -f 2)
+ssh -o LogLevel=quiet \
+    -o UserKnownHostsFile=/dev/null \
+    -o StrictHostKeyChecking=no \
+    -p "$SSH_PORT" kong@127.0.0.1
