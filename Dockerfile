@@ -17,7 +17,9 @@ RUN apt-get install -y \
         tmux \
     ;
 
-RUN useradd -ms /bin/bash kong
+RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
+
+RUN useradd -ms /bin/bash -G sudo kong
 USER kong
     WORKDIR /home/kong
     RUN mkdir .ssh
