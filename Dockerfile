@@ -12,13 +12,20 @@ RUN apt-get install -y \
         openssh-server && \
     mkdir /var/run/sshd
 
-RUN useradd -ms /bin/bash kong && \
-    mkdir /home/kong/.ssh && \
-    chown kong:kong /home/kong/.ssh
+RUN apt-get install -y \
+        vim \
+        tmux \
+    ;
 
-RUN mkdir /home/kong/data && \
-    chown kong:kong /home/kong/data && \
-    echo "data dir not mounted" > /home/kong/data/README
+RUN useradd -ms /bin/bash kong
+USER kong
+    WORKDIR /home/kong
+    RUN mkdir .ssh
+    RUN mkdir data && \
+        echo "data dir not mounted" > data/README
+    COPY src/* ./
+    RUN cat .bashrc.append >> .bashrc && rm .bashrc.append
+USER root
 
 EXPOSE 22
 EXPOSE 80
