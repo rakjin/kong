@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
+IMAGE="${1:-rakjin/kong}"
+
 mkdir -p data
-CID=$(docker run -dp 127.0.0.1::22 -v `pwd`/data:/home/kong/data rakjin/kong)
+CID=$(docker run -dp 127.0.0.1::22 -v `pwd`/data:/home/kong/data "$IMAGE")
 docker cp ~/.ssh/id_rsa     "$CID":/home/kong/.ssh/
 docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/
 docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/authorized_keys
