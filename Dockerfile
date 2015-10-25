@@ -13,8 +13,12 @@ RUN apt-get install -y \
     mkdir /var/run/sshd
 
 RUN useradd -ms /bin/bash kong && \
-    mkdir /home/kong/.ssh
+    mkdir /home/kong/.ssh && \
+    chown kong:kong /home/kong/.ssh
 
+RUN mkdir /home/kong/data && \
+    chown kong:kong /home/kong/data && \
+    echo "data dir not mounted" > /home/kong/data/README
 
 EXPOSE 22
 EXPOSE 80

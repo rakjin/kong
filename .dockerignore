@@ -1,7 +1,9 @@
 Dockerfile
 .dockerignore
+.gitignore
 
 *.swp
 
 kong-*
+data/
 

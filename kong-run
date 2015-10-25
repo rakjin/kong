@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-CID=$(docker run -d -p 127.0.0.1::22 rakjin/kong)
+mkdir -p data
+CID=$(docker run -dp 127.0.0.1::22 -v `pwd`/data:/home/kong/data rakjin/kong)
 docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/authorized_keys
 SSH_PORT=$(docker port "$CID" 22 | cut -d ":" -f 2)
 ssh -o LogLevel=quiet \
