@@ -42,8 +42,8 @@ RUN useradd -ms /bin/bash -G sudo kong
 USER kong
     WORKDIR /home/kong
     RUN mkdir .ssh
-    RUN mkdir data && \
-        echo "data dir not mounted" > data/README
+    RUN mkdir volume && \
+        echo "dir not mounted" > volume/README
     COPY src/* ./
     RUN cat .bashrc.append >> .bashrc && rm .bashrc.append
 USER root
