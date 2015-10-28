@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 docker build -t rakjin/kong .
 docker build -t rakjin/kong-ruby -f Dockerfile-ruby .

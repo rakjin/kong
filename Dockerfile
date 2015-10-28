@@ -1,7 +1,7 @@
 FROM ubuntu:14.04
 
 RUN apt-get update && \
-    apt-get dist-upgrade && \
+    apt-get dist-upgrade -y && \
     apt-get install -y software-properties-common
 
 RUN add-apt-repository ppa:git-core/ppa && \
@@ -11,12 +11,6 @@ RUN add-apt-repository ppa:git-core/ppa && \
 RUN apt-get install -y openssh-server && \
     mkdir /var/run/sshd
 
-RUN apt-get install -y \
-        build-essential \
-        libsqlite3-dev \
-        vim \
-        tmux \
-        ;
 RUN locale-gen en_US.UTF-8 && \
     update-locale \
         LANG="en_US.UTF-8" \
@@ -35,6 +29,12 @@ RUN locale-gen en_US.UTF-8 && \
         LC_IDENTIFICATION="en_US.UTF-8" \
         LC_ALL="en_US.UTF-8"
 
+RUN apt-get install -y \
+        build-essential \
+        libsqlite3-dev \
+        vim \
+        tmux \
+        ;
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
 
@@ -44,11 +44,11 @@ USER kong
     RUN mkdir .ssh
     RUN mkdir volume && \
         echo "dir not mounted" > volume/README
+    VOLUME volume
     COPY src/* ./
     RUN cat .bashrc.append >> .bashrc && rm .bashrc.append
 USER root
 
 EXPOSE 22
-EXPOSE 80
 
 CMD ["/usr/sbin/sshd", "-D"]
