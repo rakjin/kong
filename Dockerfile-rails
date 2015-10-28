@@ -1,4 +1,4 @@
-FROM rakjin/kong
+FROM rakjin/kong-nodejs
 
 RUN apt-get install -y \
         libssl-dev \

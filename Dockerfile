@@ -31,9 +31,10 @@ RUN locale-gen en_US.UTF-8 && \
 
 RUN apt-get install -y \
         build-essential \
+        curl \
         libsqlite3-dev \
-        vim \
         tmux \
+        vim \
         ;
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
