@@ -41,15 +41,20 @@ RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
 
 RUN apt-get install -y zsh
 RUN useradd -ms /bin/zsh -G sudo kong
+COPY src/home/* /home/kong/
+RUN chown kong:kong -R /home/kong
 USER kong
     WORKDIR /home/kong
     RUN mkdir .ssh
     RUN mkdir volume && \
         echo "dir not mounted" > volume/README
     VOLUME volume
-    COPY src/home/* ./
+    RUN git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh && \
+        cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc && \
+        sed -i 's/^ZSH_THEME=.\+$/ZSH_THEME="sorin"/g' .zshrc && \
+        cat .zshrc.append >> .zshrc && \
+        rm .zshrc.append
 USER root
-RUN chown kong:kong -R /home/kong
 
 EXPOSE 22
 
