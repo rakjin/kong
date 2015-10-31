@@ -17,5 +17,7 @@ USER kong
         rbenv install 2.1.5 && \
         rbenv global 2.1.5 && \
         gem install bundler
+    RUN sed -i "s/\"Append-Plugins-Here/Plugin 'tpope\/vim-rails'\n&/g" .vimrc && \
+        vim +PluginInstall +qall > /dev/null 2>&1
 USER root
 
