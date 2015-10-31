@@ -54,6 +54,8 @@ USER kong
         sed -i 's/^ZSH_THEME=.\+$/ZSH_THEME="sorin"/g' .zshrc && \
         cat .zshrc.append >> .zshrc && \
         rm .zshrc.append
+    RUN git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim && \
+        vim +PluginInstall +qall > /dev/null 2>&1
 USER root
 
 EXPOSE 22
