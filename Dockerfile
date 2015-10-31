@@ -39,16 +39,17 @@ RUN apt-get install -y \
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
 
-RUN useradd -ms /bin/bash -G sudo kong
+RUN apt-get install -y zsh
+RUN useradd -ms /bin/zsh -G sudo kong
 USER kong
     WORKDIR /home/kong
     RUN mkdir .ssh
     RUN mkdir volume && \
         echo "dir not mounted" > volume/README
     VOLUME volume
-    COPY src/* ./
-    RUN cat .bashrc.append >> .bashrc && rm .bashrc.append
+    COPY src/home/* ./
 USER root
+RUN chown kong:kong -R /home/kong
 
 EXPOSE 22
 

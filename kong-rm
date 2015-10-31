@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 docker ps -a --format="{{.Image}}\t{{.ID}}" | grep rakjin/kong | cut -f 2 | xargs docker stop | xargs docker rm
 docker ps -a
