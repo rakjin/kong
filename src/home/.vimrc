@@ -12,6 +12,7 @@ filetype plugin indent on
 
 syntax enable
 set t_Co=256
+set t_ut=
 set background=dark
 try
     colorscheme gruvbox
