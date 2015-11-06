@@ -35,6 +35,7 @@ RUN apt-get install -y \
         libsqlite3-dev \
         tmux \
         vim \
+        exuberant-ctags \
         ;
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers

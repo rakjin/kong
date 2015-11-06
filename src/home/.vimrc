@@ -4,16 +4,22 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdtree'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
 
+command TT NERDTree
+let NERDTreeShowHidden=1
+
+set encoding=utf-8
+set termencoding=utf-8
+
 syntax enable
 set t_Co=256
 set t_ut=
-set background=dark
+set background=light
 try
     colorscheme gruvbox
 catch
