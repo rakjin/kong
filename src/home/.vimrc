@@ -6,12 +6,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-rails'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
 
 command TT NERDTree
 let NERDTreeShowHidden=1
+
+command FF FufCoverageFile
+let g:fuf_coveragefile_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp|class)$|(^|[/\\])\.(hg|git|bzr|bundle)($|[/\\])|^(vendor|tmp|log|public)($|[/\\])'
+
 
 set encoding=utf-8
 set termencoding=utf-8
