@@ -4,8 +4,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'morhetz/gruvbox'
+Plugin 'bling/vim-airline'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
@@ -18,6 +18,10 @@ try
     colorscheme gruvbox
 catch
 endtry
+
+"vim-airline
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts=1
 
 set number
 set ruler

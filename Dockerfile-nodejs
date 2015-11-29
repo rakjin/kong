@@ -1,4 +1,0 @@
-FROM rakjin/kong
-
-RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash - && \
-    apt-get install -y nodejs

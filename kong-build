@@ -2,5 +2,3 @@
 set -e
 
 docker build -t rakjin/kong .
-docker build -t rakjin/kong-nodejs -f Dockerfile-nodejs .
-docker build -t rakjin/kong-rails -f Dockerfile-rails .
