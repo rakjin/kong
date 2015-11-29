@@ -6,7 +6,22 @@ VOLUME=$(readlink -mf "$VOLUME")
 IMAGE="${2:-rakjin/kong}"
 
 mkdir -p "$VOLUME"
-CID=$(docker run -dp 127.0.0.1::22 -v "$VOLUME":/home/kong/volume "$IMAGE")
+CID=$(docker run -d \
+    -p 127.0.0.1::22 \
+    -p 0.0.0.0:3000:3000 \
+    -p 0.0.0.0:3001:3001 \
+    -p 0.0.0.0:3002:3002 \
+    -p 0.0.0.0:3003:3003 \
+    -p 0.0.0.0:3306:3306 \
+    -p 0.0.0.0:4000:4000 \
+    -p 0.0.0.0:5000:5000 \
+    -p 0.0.0.0:6000:6000 \
+    -p 0.0.0.0:7000:7000 \
+    -p 0.0.0.0:7777:7777 \
+    -p 0.0.0.0:8000:8000 \
+    -p 0.0.0.0:8080:8080 \
+    -p 0.0.0.0:8888:8888 \
+    -v "$VOLUME":/home/kong/volume "$IMAGE")
 docker cp ~/.ssh/id_rsa     "$CID":/home/kong/.ssh/
 docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/
 docker cp ~/.ssh/id_rsa.pub "$CID":/home/kong/.ssh/authorized_keys
