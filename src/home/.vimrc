@@ -6,9 +6,14 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'morhetz/gruvbox'
 Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
+
+" nerdtree
+command TT NERDTree
+let NERDTreeShowHidden=1
 
 syntax enable
 set t_Co=256
