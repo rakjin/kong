@@ -6,7 +6,7 @@ alias gl='clear && git log --graph --decorate --pretty=format:"%Cblue%h %Cgreen%
 alias gs='clear && git status'
 alias gd='clear && git diff'
 alias gdx='gd -b --color-words --word-diff-regex=.'
-alias gdc='clear && git diff --cached'
+alias gdc='clear && git diff -M --cached'
 alias gdcx='gdc -b --color-words --word-diff-regex=.'
 alias gap='clear && git add -p'
 
