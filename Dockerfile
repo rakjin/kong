@@ -84,6 +84,6 @@ EXPOSE 22
 # http://stackoverflow.com/a/18374381/3296566
 RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
-RUN echo 'kong:kokokong' | chpasswd
+RUN echo 'kong:'$(openssl rand -base64 32) | chpasswd
 
 CMD ["/usr/sbin/sshd", "-D"]
