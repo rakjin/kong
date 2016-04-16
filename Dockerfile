@@ -39,6 +39,7 @@ RUN apt-get install -y \
         tmux \
         vim \
         tig \
+        man \
         ;
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
