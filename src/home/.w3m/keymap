@@ -1,0 +1,26 @@
+
+keymap   BACK
+
+keymap #   PREV_LINK
+keymap *   NEXT_LINK
+
+keymap C-u PREV_PAGE
+keymap C-d NEXT_PAGE
+keymap u   PREV_PAGE
+keymap d   NEXT_PAGE
+
+keymap w   NEXT_WORD
+keymap b   PREV_WORD
+
+keymap :   COMMAND
+
+
+keymap C-t NEW_TAB
+
+keymap   { PREV_TAB
+keymap C-p PREV_TAB
+
+keymap   } NEXT_TAB
+keymap C-n NEXT_TAB
+
+keymap C-w CLOSE_TAB
