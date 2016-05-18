@@ -40,6 +40,7 @@ RUN apt-get install -y \
         vim \
         tig \
         man \
+        silversearcher-ag \
         ;
 
 RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
