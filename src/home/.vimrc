@@ -15,7 +15,7 @@ filetype plugin indent on
 " nerdtree
 command TT NERDTree
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.pyc$']
+let NERDTreeIgnore=['\.git$', '\.pyc$', '^__pycache__$', '^\.cache$']
 
 " leader space
 let mapleader="\<SPACE>"
