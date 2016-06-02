@@ -64,6 +64,7 @@ set colorcolumn=81,121
 set listchars=tab:>-,trail:-
 set list
 set scrolloff=13
+set nostartofline
 
 set autoindent
 set expandtab
