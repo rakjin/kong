@@ -8,6 +8,9 @@ Plugin 'morhetz/gruvbox'
 Plugin 'kien/ctrlp.vim'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'mileszs/ack.vim'
+Plugin 'slim-template/vim-slim'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
@@ -19,6 +22,11 @@ let NERDTreeIgnore=['\.git$', '\.pyc$', '^__pycache__$', '^\.cache$']
 
 " leader space
 let mapleader="\<SPACE>"
+
+" ack.vim for ag
+let g:ackprg = 'ag'
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 " hotkey
 nnoremap <Leader>w :w<CR>
@@ -34,6 +42,7 @@ nnoremap <Leader>6 :b6<CR>
 nnoremap <Leader>7 :b7<CR>
 nnoremap <Leader>8 :b8<CR>
 nnoremap <Leader>9 :b9<CR>
+nnoremap <Leader>` :ls<CR>
 
 syntax enable
 set t_Co=256

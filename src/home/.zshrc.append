@@ -15,7 +15,12 @@ alias push='git push'
 alias checkout='git checkout'
 alias add='git add'
 alias commit='git commit'
+alias cm='git commit'
 alias show='git show'
+alias showx='git show -b --color-words --word-diff-regex=.'
 alias merge='git merge'
 
 alias ssh='LC_ALL=ko_KR.UTF-8 LANGUAGE=ko_KR.UTF-8 ssh'
+
+alias grep='grep --color=always'
+alias ag='ag --pager=less'
