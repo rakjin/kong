@@ -1,3 +1,5 @@
+export LC_ALL=en_US.UTF-8
+
 export TERM='xterm-256color'
 
 alias ls='ls -lahF --color'
@@ -25,5 +27,9 @@ alias ssh='LC_ALL=ko_KR.UTF-8 LANGUAGE=ko_KR.UTF-8 ssh'
 alias grep='grep --color=always'
 alias ag='ag --pager=less'
 
-alias beep='(echo -e "\a" && sleep 0.5 && echo -e "\a")'
-alias boop='(echo -e "\a" && sleep 0.5 && echo -e "\a" && sleep 0.5 && echo -e "\a" && sleep 0.5 && echo -e "\a" && sleep 0.5 && echo -e "\a")'
+alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
+alias boop='paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga'
+
+if [ -z "$TMUX" ]; then
+    tmux
+fi

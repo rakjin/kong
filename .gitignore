@@ -1,1 +1,4 @@
-data/
+/data
+/volume
+/src/home/.w3m/cookie
+/src/home/.w3m/history

@@ -43,6 +43,7 @@ nnoremap <Leader>7 :b7<CR>
 nnoremap <Leader>8 :b8<CR>
 nnoremap <Leader>9 :b9<CR>
 nnoremap <Leader>` :ls<CR>
+nnoremap <Leader>z <C-w>T
 
 syntax enable
 set t_Co=256

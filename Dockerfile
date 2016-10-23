@@ -1,20 +1,37 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
-RUN apt-get update && \
-    apt-get dist-upgrade -y && \
-    apt-get install -y software-properties-common
+RUN apt-get update
+RUN apt-get dist-upgrade -y
+RUN apt-get install -y software-properties-common
 
-RUN add-apt-repository ppa:git-core/ppa && \
-    apt-get update && \
-    apt-get install -y git
+RUN add-apt-repository ppa:git-core/ppa
+RUN apt-get update
+RUN apt-get install -y git
 
-RUN apt-get install -y openssh-server && \
-    mkdir /var/run/sshd
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
 
-RUN locale-gen en_US.UTF-8 && \
-    update-locale \
+RUN apt-get install -y build-essential
+
+RUN apt-get install -y libreadline-dev
+RUN apt-get install -y libsqlite3-dev
+RUN apt-get install -y libssl-dev
+RUN apt-get install -y zlib1g-dev
+
+RUN apt-get install -y curl
+RUN apt-get install -y man
+RUN apt-get install -y silversearcher-ag
+RUN apt-get install -y tig
+RUN apt-get install -y tmux
+RUN apt-get install -y vim
+RUN apt-get install -y zsh
+
+RUN apt-get install -y sudo
+RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
+
+RUN locale-gen en_US.UTF-8
+RUN update-locale \
         LANG="en_US.UTF-8" \
-        LANGUAGE="en_US.UTF-8" \
         LC_CTYPE="en_US.UTF-8" \
         LC_NUMERIC="en_US.UTF-8" \
         LC_TIME="en_US.UTF-8" \
@@ -29,56 +46,57 @@ RUN locale-gen en_US.UTF-8 && \
         LC_IDENTIFICATION="en_US.UTF-8" \
         ;
 
-RUN apt-get install -y \
-        build-essential \
-        libssl-dev \
-        libreadline-dev \
-        zlib1g-dev \
-        libsqlite3-dev \
-        curl \
-        tmux \
-        vim \
-        tig \
-        man \
-        silversearcher-ag \
-        ;
-
-RUN sed -i 's/^%sudo.\+$/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/g' /etc/sudoers
-
-RUN apt-get install -y zsh
 RUN useradd -ms /bin/zsh -G sudo kong
 USER kong
     WORKDIR /home/kong
     RUN mkdir .ssh
-    RUN mkdir volume && \
-        echo "dir not mounted" > volume/README
+
+    RUN mkdir volume
+    RUN echo "dir not mounted" > volume/README
     VOLUME volume
-    RUN git clone https://github.com/sstephenson/rbenv.git .rbenv && \
-        git clone https://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build && \
-        export PATH="$HOME/.rbenv/bin:$PATH" && \
-        eval "$(rbenv init -)" && \
-        rbenv install 2.1.5 && \
-        rbenv global 2.1.5 && \
-        gem install bundler
+
 USER root
 
 COPY src/home/* /home/kong/
 RUN chown kong:kong -R /home/kong
 USER kong
+
     WORKDIR /home/kong
-    RUN git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh && \
-        cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc && \
-        sed -i 's/^ZSH_THEME=.\+$/ZSH_THEME="sorin"/g' .zshrc && \
-        cat .zshrc.append >> .zshrc && \
-        rm .zshrc.append
-    RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash && \
-        export NVM_DIR="$HOME/.nvm" && \
-        . .nvm/nvm.sh && \
-        nvm install node
-    RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc && \
-        echo 'eval "$(rbenv init -)"' >> ~/.zshrc
-    RUN git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim && \
-        vim +PluginInstall +qall > /dev/null 2>&1
+
+    # omz
+    RUN git clone git://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
+    RUN cp .oh-my-zsh/templates/zshrc.zsh-template .zshrc
+    RUN sed -i 's/^ZSH_THEME=.\+$/ZSH_THEME="sorin"/g' .zshrc
+    RUN echo "source ~/.zshrc.append" >> .zshrc
+
+    # rbenv
+    RUN git clone https://github.com/sstephenson/rbenv.git .rbenv
+    RUN git clone https://github.com/sstephenson/ruby-build.git .rbenv/plugins/ruby-build
+    RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc.append
+    RUN echo 'eval "$(rbenv init -)"'               >> ~/.zshrc.append
+    RUN . ~/.zshrc.append && rbenv install 2.1.5
+    RUN . ~/.zshrc.append && rbenv global 2.1.5
+    RUN . ~/.zshrc.append && gem install bundler
+
+    # pyenv
+    RUN git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+    RUN echo 'export PYENV_ROOT="$HOME/.pyenv"'    >> ~/.zshrc.append
+    RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc.append
+    RUN echo 'eval "$(pyenv init -)"'              >> ~/.zshrc.append
+    RUN . ~/.zshrc.append && pyenv install 2.7.12
+    RUN . ~/.zshrc.append && pyenv install 3.5.2
+    RUN . ~/.zshrc.append && pyenv global  3.5.2
+
+    # nvm
+    RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+    RUN echo 'export NVM_DIR="$HOME/.nvm"'                     >> ~/.zshrc.append
+    RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"' >> ~/.zshrc.append
+    RUN . ~/.zshrc.append && nvm install node
+
+    # vim vundle
+    RUN git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
+    RUN vim +PluginInstall +qall > /dev/null 2>&1
+
 USER root
 
 EXPOSE 22
