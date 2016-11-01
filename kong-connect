@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+set -e
+
+# Usage:
+#     $ CID=b946e6bfc273 ./kong-connect
+
+SSH_PORT=$(docker port "$CID" 22 | cut -d ":" -f 2)
+ssh -o LogLevel=quiet \
+    -o UserKnownHostsFile=/dev/null \
+    -o StrictHostKeyChecking=no \
+    -p "$SSH_PORT" kong@127.0.0.1
