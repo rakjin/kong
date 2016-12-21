@@ -97,6 +97,9 @@ USER kong
     RUN git clone https://github.com/VundleVim/Vundle.vim.git .vim/bundle/Vundle.vim
     RUN vim +PluginInstall +qall > /dev/null 2>&1
 
+    # tmuxinator
+    RUN gem install tmuxinator
+
 USER root
 
 EXPOSE 22
