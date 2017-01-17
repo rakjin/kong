@@ -70,6 +70,7 @@ set hidden
 set number
 set ruler
 highlight ColorColumn ctermbg=8
+highlight Normal ctermbg=None
 set colorcolumn=81,121
 set listchars=tab:>-,trail:-
 set list
