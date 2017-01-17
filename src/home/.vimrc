@@ -11,6 +11,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Glench/Vim-Jinja2-Syntax'
 Plugin 'mileszs/ack.vim'
 Plugin 'slim-template/vim-slim'
+Plugin 'tpope/vim-fugitive'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
@@ -19,6 +20,9 @@ filetype plugin indent on
 command TT NERDTree
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.git$', '\.pyc$', '^__pycache__$', '^\.cache$']
+
+" fugitive
+command BLAME Gblame
 
 " leader space
 let mapleader="\<SPACE>"
