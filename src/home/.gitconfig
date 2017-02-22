@@ -1,9 +1,20 @@
 [user]
-	email = grampush@gmail.com
-	name = rakjin
+    email = grampush@gmail.com
+    name = rakjin
 [push]
-	default = simple
+    default = simple
 [core]
-	editor = vim
+    editor = vim
+    quotepath = false
+[diff "xlsx"]
+    binary = true
+    textconv = $GOPATH/bin/git-xlsx-textconv
+[diff "ssd"]
+    binary = true
+    textconv = hexdump -C
+[diff "image"]
+    binary = true
+    textconv = catimg -w'-1'
 [diff]
-	compactionHeuristic = true
+    compactionHeuristic = true
+    renameLimit = 1023
