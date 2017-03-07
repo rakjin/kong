@@ -31,5 +31,5 @@ alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
 alias boop='paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga'
 
 if [ -z "$TMUX" ]; then
-    tmux
+    tmux attach || tmux
 fi
