@@ -56,7 +56,7 @@ ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ═"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 
 
-TMOUT=1
+TMOUT=13  # 1초마다 하니까 터미널 여러개 띄우면 빡세다
 TRAPALRM() {
     zle reset-prompt
 }
