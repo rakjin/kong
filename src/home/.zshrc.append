@@ -31,6 +31,7 @@ alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
 alias boop='paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga'
 
 alias jbos='jobs'
+alias dk='docker'
 
 if [ -z "$TMUX" ]; then
     tmux attach || tmux
