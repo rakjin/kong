@@ -2,7 +2,14 @@ export LC_ALL=en_US.UTF-8
 
 export TERM='xterm-256color'
 
-alias ls='ls -lahF --color'
+alias vi='vim'
+
+if [[ "$OSTYPE" = linux* ]]; then
+  alias ls='ls -lahF --color'
+elif [[ "$OSTYPE" = darwin* ]]; then
+  alias ls='ls -lahFG'
+fi
+
 alias gl='clear && git log --graph --decorate --pretty=format:"%Cblue%h %Cgreen%ci%Creset %Cblue%d%Creset %s %Cgreen%cn%Creset"'
 alias gs='clear && git status'
 alias gsp='git status --porcelain'
@@ -27,8 +34,15 @@ alias ssh='LC_ALL=ko_KR.UTF-8 LANGUAGE=ko_KR.UTF-8 ssh'
 alias grep='grep --color=always'
 alias ag='ag --pager=less'
 
-alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
-alias boop='paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga'
+
+if [[ "$OSTYPE" = linux* ]]; then
+  alias beep='paplay /usr/share/sounds/freedesktop/stereo/complete.oga'
+  alias boop='paplay /usr/share/sounds/freedesktop/stereo/suspend-error.oga'
+elif [[ "$OSTYPE" = darwin* ]]; then
+  alias beep1='tput bel && sleep 0.5'
+  alias beep='beep1 && beep1'
+  alias boop='beep1 && beep1 && beep1 && beep1 && beep1'
+fi
 
 alias jbos='jobs'
 alias dk='docker'
