@@ -46,6 +46,7 @@ fi
 
 alias jbos='jobs'
 alias dk='docker'
+alias jk='jekyll'
 
 if [ -z "$TMUX" ]; then
     tmux attach || tmux
