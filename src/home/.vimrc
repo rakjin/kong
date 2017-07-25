@@ -19,7 +19,15 @@ filetype plugin indent on
 " nerdtree
 command TT NERDTree
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$', '\.pyc$', '^__pycache__$', '^\.cache$']
+let NERDTreeIgnore=[
+    \ '\.git$',
+    \ '\.pyc$',
+    \ '^\.cache$',
+    \ '^\.coverage$',
+    \ '^\.mypy_cache$',
+    \ '^\.venv$',
+    \ '^__pycache__$',
+    \ ]
 
 " fugitive
 command BLAME Gblame
