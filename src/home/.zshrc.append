@@ -51,10 +51,17 @@ alias dk='docker'
 alias jk='jekyll'
 
 
+# 위아래 방향키 대신 C-p, C-n 쓰자
+# https://superuser.com/a/583584
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
+
+
 # tmux 안에서 open 쓰기
 if [[ "$OSTYPE" = darwin* ]]; then
   alias open='reattach-to-user-namespace open'
 fi
+
 
 if [ -z "$TMUX" ]; then
     tmux attach || tmux
