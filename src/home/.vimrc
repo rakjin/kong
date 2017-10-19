@@ -89,6 +89,7 @@ set listchars=tab:>-,trail:-
 set list
 set scrolloff=13
 set nostartofline
+set backspace=2
 
 set autoindent
 set expandtab
