@@ -10,7 +10,8 @@ elif [[ "$OSTYPE" = darwin* ]]; then
   alias ls='ls -lahFG'
 fi
 
-unalias gc
+unalias gc > /dev/null 2> /dev/null
+
 alias gl='clear && git log --graph --decorate --pretty=format:"%Cblue%h %Cgreen%ci%Creset %Cblue%d%Creset %s %Cgreen%cn%Creset"'
 alias gs='clear && git status'
 alias gsp='git status --porcelain'
