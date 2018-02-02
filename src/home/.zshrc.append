@@ -60,9 +60,14 @@ bindkey '^P' up-line-or-search
 bindkey '^N' down-line-or-search
 
 
-# tmux 안에서 open 쓰기
+# mac os
 if [[ "$OSTYPE" = darwin* ]]; then
+  # tmux 안에서 open 쓰기
   alias open='reattach-to-user-namespace open'
+
+  # 온도 표시
+  # gem install iStats
+  alias temperature='while true; do; TEMP_NOW=$(date "+%H:%M:%S") && TEMP_CPU=$(istats cpu temp --no-label) && TEMP_BAT=$(istats battery temp --no-label) && echo "$TEMP_NOW\t$TEMP_CPU\t$TEMP_BAT" && sleep 15; done'
 fi
 
 
