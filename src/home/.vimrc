@@ -13,6 +13,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'keith/swift.vim'
+Plugin 'jtratner/vim-flavored-markdown'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
@@ -40,6 +41,12 @@ let mapleader="\<SPACE>"
 let g:ackprg = 'ag'
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
+
+" vim-flavored-markdown
+augroup markdown
+    au!
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+augroup END
 
 " hotkey
 nnoremap <Leader>w :w<CR>
@@ -81,7 +88,7 @@ let g:airline#extensions#tabline#buffer_nr_show=1
 let g:airline_powerline_fonts=1
 
 set hidden
-set number
+set number relativenumber
 set ruler
 highlight ColorColumn ctermbg=8
 highlight Normal ctermbg=None
