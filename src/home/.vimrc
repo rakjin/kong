@@ -13,7 +13,7 @@ Plugin 'mileszs/ack.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'keith/swift.vim'
-Plugin 'jtratner/vim-flavored-markdown'
+Plugin 'rhysd/vim-gfm-syntax'
 "Append-Plugins-Here
 call vundle#end()
 filetype plugin indent on
