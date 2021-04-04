@@ -1,0 +1,21 @@
+{
+    "editor.lineNumbers": "relative",
+    "editor.renderWhitespace": "boundary",
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#6663"
+    },
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "rust.all_features": true,
+    "cargo.automaticCheck": false,
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "files.insertFinalNewline": true,
+    "python.linting.flake8Enabled": true
+}
